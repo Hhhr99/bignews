@@ -53,7 +53,7 @@ router.post('/login', (req, res) => {
             const token = 'Bearer ' + jwt.sign(
                 {name: username},
                 'bignews',// 加密的密码，要与express-jwt中的验证密码一致
-                {expiresIn: 7200}// 过期时间，单位是秒
+                {expiresIn: 720000}// 过期时间，单位是秒
             )
             res.json({status: 0, msg: '登录成功', token})
         } else {
@@ -61,4 +61,6 @@ router.post('/login', (req, res) => {
         }
     })
 })
+
+
 module.exports = router
