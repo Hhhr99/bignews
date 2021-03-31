@@ -28,8 +28,14 @@ server.use('/my', userRouter);
 server.use('/api', accountRouter)
 server.use('/my/article', cateRouter)
 
-
-
+// 错误中间件处理
+server.use((err, req, res, next) => {
+    console.log('有错误', err)
+    if (err.name === 'UnauthorizedError') {
+        // res.status(401).send('invalid token...');
+        res.status(401).send({ code: 1, message: '身份认证失败！' });
+    }
+});
 
 server.listen(3001, () => {
     console.log('3001监听就绪')
