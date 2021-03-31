@@ -20,6 +20,16 @@ server.use(jwt({
     path: ['/user/login', '/user/register', /^\/uploads\/.*/] // 除了这两个接口，其他都需要认证
 }));
 
+// 通过路由中间件来 加载不同的路由
+const userRouter = require('./router/user_router.js')
+const accountRouter = require('./router/account_router.js')
+const cateRouter = require('./router/cate_router.js')
+server.use('/my', userRouter);
+server.use('/api', accountRouter)
+server.use('/my/article', cateRouter)
+
+
+
 
 server.listen(3001, () => {
     console.log('3001监听就绪')
