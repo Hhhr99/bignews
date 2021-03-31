@@ -17,7 +17,7 @@ server.use(jwt({
     secret: 'bignews',      // 生成token时的 钥匙，必须统一
     algorithms: ['HS256']       // 必填，加密算法，无需了解
 }).unless({
-    path: ['/user/login', '/user/register', /^\/uploads\/.*/] // 除了这两个接口，其他都需要认证
+    path: ['/api/login', '/api/register', /^\/uploads\/.*/] // 除了这两个接口，其他都需要认证
 }));
 
 // 通过路由中间件来 加载不同的路由
